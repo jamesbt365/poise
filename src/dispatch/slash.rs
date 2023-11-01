@@ -236,7 +236,6 @@ async fn run_autocomplete<U, E>(
     };
 
     #[allow(unused_imports)]
-    use ::serenity::json::prelude::*; // as_str() access via trait for simd-json
 
     // Generate an autocomplete response
     let autocomplete_response = match autocomplete_callback(ctx, partial_input).await {
