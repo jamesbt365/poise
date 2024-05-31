@@ -49,7 +49,7 @@ pub struct CommandArgs {
     category: Option<String>,
     custom_data: Option<syn::Expr>,
 
-    manual_cooldowns: bool,
+    manual_cooldowns: Option<bool>,
 
     // In seconds
     global_cooldown: Option<u64>,
