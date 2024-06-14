@@ -408,6 +408,7 @@ fn generate_command(mut inv: Invocation) -> Result<proc_macro2::TokenStream, dar
                 description_localizations: #description_localizations,
                 help_text: #help_text,
                 hide_in_help: #hide_in_help,
+                manual_cooldowns: #manual_cooldowns,
                 cooldowns: std::sync::Mutex::new(::poise::Cooldowns::new()),
                 cooldown_config: #cooldown_config,
                 reuse_response: #reuse_response,
