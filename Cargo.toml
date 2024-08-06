@@ -47,6 +47,7 @@ collector = []
 # This feature exists because some users want to disable the mere possibility of catching panics at
 # build time for peace of mind.
 handle_panics = []
+unstable = ["serenity/unstable", "poise_macros/unstable"]
 
 [package.metadata.docs.rs]
 all-features = true
