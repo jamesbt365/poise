@@ -53,6 +53,7 @@ pub struct CommandArgs {
     install_context: Option<syn::punctuated::Punctuated<syn::Ident, syn::Token![|]>>,
     #[cfg(feature = "unstable")]
     interaction_context: Option<syn::punctuated::Punctuated<syn::Ident, syn::Token![|]>>,
+    manual_cooldowns: Option<bool>,
 
     // In seconds
     global_cooldown: Option<u64>,
@@ -325,6 +326,7 @@ fn generate_command(mut inv: Invocation) -> Result<proc_macro2::TokenStream, dar
     let description = wrap_option_to_string(inv.description.as_ref());
     let category = wrap_option_to_string(inv.args.category.as_ref());
 
+    let manual_cooldowns = wrap_option(inv.args.manual_cooldowns);
     let cooldown_config = generate_cooldown_config(&inv.args);
 
     let default_member_permissions = &inv.default_member_permissions;
@@ -462,6 +464,7 @@ fn generate_command(mut inv: Invocation) -> Result<proc_macro2::TokenStream, dar
                 description_localizations: #description_localizations,
                 help_text: #help_text,
                 hide_in_help: #hide_in_help,
+                manual_cooldowns: #manual_cooldowns,
                 cooldowns: std::sync::Mutex::new(::poise::Cooldowns::new()),
                 cooldown_config: #cooldown_config,
                 reuse_response: #reuse_response,
