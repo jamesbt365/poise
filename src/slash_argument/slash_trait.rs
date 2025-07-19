@@ -3,7 +3,7 @@
 use super::SlashArgError;
 use std::convert::TryInto as _;
 
-use crate::{serenity_prelude as serenity, CowVec};
+use crate::{argument_convert::ArgumentConvert, serenity_prelude as serenity, CowVec};
 
 /// Implement this trait on types that you want to use as a slash command parameter.
 #[async_trait::async_trait]
@@ -36,8 +36,7 @@ async fn extract_via_argumentconvert<T>(
     value: &serenity::ResolvedValue<'_>,
 ) -> Result<T, SlashArgError>
 where
-    T: serenity::ArgumentConvert + Send + Sync,
-    T::Err: std::error::Error + Send + Sync + 'static,
+    T: ArgumentConvert + Send + Sync,
 {
     let string = match value {
         serenity::ResolvedValue::String(str) => *str,
