@@ -60,7 +60,7 @@ macro_rules! _parse_prefix {
             $crate::_parse_prefix!($ctx $msg $args $attachment_index => [ $error $($preamble)* token ]);
         } else {
             let input = $args.trim_start();
-            match <$type as $crate::serenity_prelude::ArgumentConvert>::convert(
+            match <$type as $crate::argument_convert::ArgumentConvert>::convert(
                 $ctx, $msg.guild_id, Some($msg.channel_id), input
             ).await {
                 Ok(token) => {
@@ -121,7 +121,7 @@ macro_rules! _parse_prefix {
         if input.is_empty() {
             $error = ($crate::TooFewArguments::default().into(), None);
         } else {
-            match <$type as $crate::serenity_prelude::ArgumentConvert>::convert(
+            match <$type as $crate::argument_convert::ArgumentConvert>::convert(
                 $ctx, $msg.guild_id, Some($msg.channel_id), input
             ).await {
                 Ok(token) => {
