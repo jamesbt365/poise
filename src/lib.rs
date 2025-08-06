@@ -377,7 +377,7 @@ underlying this framework, so that's what I chose.
 Also, poise is a stat in Dark Souls
 */
 
-mod argument_convert;
+pub mod argument_convert;
 pub mod builtins;
 pub mod choice_parameter;
 pub mod cooldown;
